@@ -1,3 +1,33 @@
 body {
-    color: red;
+    .ms-cards-container {
+        .ms-cards-wrapper {
+            .ms-card-item {
+                .ms-image-wrapper {
+                    height: 130px;
+                    overflow: hidden;
+                    margin: 10px 0;
+                    &.ms-dissapear {
+                        img {
+                            visibility: hidden;
+                        }
+                    }
+                    &.ms-hide {
+                        -webkit-box-shadow: 0px 0px 11px 0px rgba(0,0,0,0.75);
+                        -moz-box-shadow: 0px 0px 11px 0px rgba(0,0,0,0.75);
+                        box-shadow: 0px 0px 11px 0px rgba(0,0,0,0.75);
+                        cursor: pointer;
+                        &:hover {
+                            background-color: rgba(0,0,0,0.5);
+                        }
+                        img {
+                            visibility: hidden;
+                        }
+                    }
+                    img {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
 }

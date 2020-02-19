@@ -15,3 +15,13 @@ body .ms-cards-container .ms-cards-wrapper .ms-card-item .ms-image-wrapper {
       visibility: hidden; }
   body .ms-cards-container .ms-cards-wrapper .ms-card-item .ms-image-wrapper img {
     width: 100%; }
+
+body .ms-button-container {
+  display: none; }
+  body .ms-button-container.ms-visble {
+    display: block; }
+  body .ms-button-container .ms-button-wrapper {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center; }

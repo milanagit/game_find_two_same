@@ -30,4 +30,20 @@ body {
             }
         }
     }
+
+    .ms-button-container {
+        display: none;
+        &.ms-visble {
+            display: block;
+        }
+        .ms-button-wrapper {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            button {
+
+            }
+        }
+    }
 }

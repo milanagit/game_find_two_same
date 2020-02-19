@@ -28,26 +28,48 @@ $(document).ready(function() {
     function afterSetup() {
         // Reveal hidden image on click and delete if two are the same
         var numberOfVisibleCards,
-            srcArray;
+            srcArray,
+            isFinished = false;
         $('.ms-image-wrapper.ms-hide').on('click', function() {
+            if(isFinished) {
+                return;
+            }
             numberOfVisibleCards = $('.ms-image-wrapper').not('.ms-hide, .ms-dissapear').length;
 
-            if(numberOfVisibleCards < 2) {
-                $(this).removeClass('ms-hide');
+            // Reveal card on click
+            $(this).removeClass('ms-hide');
 
-                if(numberOfVisibleCards === 1) {
-                    srcArray = $('.ms-image-wrapper').not('.ms-hide, .ms-dissapear').find('img');
-                    var firstImageAttrib = $(srcArray[0]).attr('src'),
-                        secondImageAttrib = $(srcArray[1]).attr('src');
-                        
-                    if(firstImageAttrib === secondImageAttrib) {
+            // When two cards are shown check if they are the same
+            if(numberOfVisibleCards === 1) {
+                isFinished = true;
+
+                srcArray = $('.ms-image-wrapper').not('.ms-hide, .ms-dissapear').find('img');
+                var firstImageAttrib = $(srcArray[0]).attr('src'),
+                    secondImageAttrib = $(srcArray[1]).attr('src');
+                    
+                if(firstImageAttrib === secondImageAttrib) {
+                    setTimeout(function() {
                         $('.ms-image-wrapper').not('.ms-hide').addClass('ms-dissapear');
-                    }
-                }
+                        isFinished = false;
 
-            } else {
-                $('.ms-image-wrapper').not('.ms-hide, .ms-dissapear').addClass('ms-hide');
-            }
+                        // Remove .ms-cards-container and display .ms-button-container if there are no visible cards
+                        if(!$('.ms-cards-container .ms-image-wrapper').not('.ms-dissapear').length) {
+                            $('.ms-cards-container').detach();
+                            $('.ms-button-container').addClass('ms-visble');
+                        }
+                    }, 500);
+                } else {
+                    setTimeout(function() {
+                        $('.ms-image-wrapper').not('.ms-hide, .ms-dissapear').addClass('ms-hide');
+                        isFinished = false;
+                    }, 500);
+                }
+            } 
+        });
+
+        // Refresh page on button click
+        $('.ms-button-wrapper button').on('click', function() {
+            location.reload();
         });
     }
 
